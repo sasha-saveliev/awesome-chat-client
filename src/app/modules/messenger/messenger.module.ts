@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { MessangerRoutingModule } from './messanger-routing.module';
 
-import { HomeComponent } from './components/home/home.component';
+import { SidebarHeaderComponent } from './components/sidebar/header/header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HomeRouteComponent } from './routes/home/home.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeRouteComponent,
+    SidebarComponent,
+    SidebarHeaderComponent
   ],
   imports: [
     CommonModule,
