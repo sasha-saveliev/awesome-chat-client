@@ -26,7 +26,9 @@ import { MessengerModule } from './modules/messenger/messenger.module';
 
     AppRoutingModule
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
