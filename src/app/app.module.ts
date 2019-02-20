@@ -7,18 +7,23 @@ import '../polyfills';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { ElectronService } from './providers/electron.service';
+
+import { AuthModule } from './modules/auth/auth.module';
+import { MessengerModule } from './modules/messenger/messenger.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+
+    MessengerModule,
+    AuthModule,
+
     AppRoutingModule
   ],
   providers: [ElectronService],

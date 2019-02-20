@@ -2,6 +2,11 @@
   "name": "awesome-chat-client",
   "version": "0.0.1",
   "description": "Awesome Chat Client",
+  "author": {
+    "name": "Oleksandr Saveliev",
+    "email": "airbasic4@gmail.com"
+  },
+  "repository": "github:sasha-saveliev/awesome-chat-client",
   "main": "main.js",
   "private": true,
   "scripts": {
@@ -39,6 +44,7 @@
     "@types/jasmine": "2.8.7",
     "@types/jasminewd2": "2.0.3",
     "@types/node": "8.9.4",
+    "@types/socket.io-client": "^1.4.32",
     "codelyzer": "4.5.0",
     "conventional-changelog-cli": "2.0.11",
     "core-js": "2.6.1",
@@ -55,6 +61,7 @@
     "npm-run-all": "4.1.5",
     "protractor": "5.4.1",
     "rxjs": "6.3.3",
+    "socket.io-client": "^2.2.0",
     "ts-node": "7.0.1",
     "tslint": "5.11.0",
     "typescript": "3.1.6",
