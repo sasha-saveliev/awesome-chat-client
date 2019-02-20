@@ -7,6 +7,8 @@ let serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
+const calculateSizeByPercentage = (baseSize, percentage) => Number((baseSize * percentage / 100).toFixed());
+
 function createWindow() {
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -15,8 +17,12 @@ function createWindow() {
   win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: size.width,
-    height: size.height
+
+    width: calculateSizeByPercentage(size.width, 60),
+    minWidth: 671,
+
+    height: calculateSizeByPercentage(size.height, 82),
+    minHeight: 378,
   });
 
   if (serve) {
