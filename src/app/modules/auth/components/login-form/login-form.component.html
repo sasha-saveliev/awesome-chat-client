@@ -1,0 +1,10 @@
+<h3 class="login-form-title">Login Form</h3>
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <mat-form-field>
+    <input matInput name="email" placeholder="Email" id="email" [(ngModel)]="loginModel.email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="password" placeholder="Password" id="password" [(ngModel)]="loginModel.password">
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
+</form>

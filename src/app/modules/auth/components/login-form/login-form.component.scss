@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  width: 350px;
+
+  .login-form-title {
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}
