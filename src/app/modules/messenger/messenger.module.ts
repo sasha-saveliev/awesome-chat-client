@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 
 import { MessangerRoutingModule } from './messanger-routing.module';
 
 import { SidebarHeaderComponent } from './components/sidebar/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeRouteComponent } from './routes/home/home.component';
+import { messengerReducer } from './state';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { HomeRouteComponent } from './routes/home/home.component';
   ],
   imports: [
     CommonModule,
-    MessangerRoutingModule
+    MessangerRoutingModule,
+    StoreModule.forFeature('messenger', messengerReducer)
   ]
 })
 export class MessengerModule { }

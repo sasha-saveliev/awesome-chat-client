@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 import 'reflect-metadata';
 import '../polyfills';
 
@@ -24,6 +28,12 @@ import { MessengerModule } from './modules/messenger/messenger.module';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'Awesome Chat Client',
+      maxAge: 25
+    }),
 
     MessengerModule,
     AuthModule,
