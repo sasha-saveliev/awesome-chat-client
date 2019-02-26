@@ -1,0 +1,12 @@
+@import 'color-palette';
+
+:host {
+  width: 100%;
+  display: block;
+
+  border-top: 1px solid $soft-grey;
+  padding: 10px 20px;
+
+  position: absolute;
+  bottom: 0;
+}

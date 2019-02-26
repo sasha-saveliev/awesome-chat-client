@@ -6,6 +6,8 @@ import { MessangerRoutingModule } from './messanger-routing.module';
 
 import { MaterialModule } from '../../material/material.module';
 import { DirectMessageDialogComponent } from './components/direct-message-dialog/direct-message-dialog.component';
+import { RoomChatFooterComponent } from './components/room-chat/footer/footer.component';
+import { RoomChatHeaderComponent } from './components/room-chat/header/header.component';
 import { RoomChatComponent } from './components/room-chat/room-chat.component';
 import { SidebarHeaderComponent } from './components/sidebar/header/header.component';
 import { SidebarRoomComponent } from './components/sidebar/room/room.component';
@@ -24,7 +26,10 @@ import { messengerReducer } from './state';
     SidebarHeaderComponent,
     SidebarRoomComponent,
     DirectMessageDialogComponent,
-    RoomChatComponent
+
+    RoomChatComponent,
+    RoomChatHeaderComponent,
+    RoomChatFooterComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,10 @@
+@import 'color-palette';
+@import 'shared';
+
+:host {
+  width: 100%;
+  display: block;
+
+  border-bottom: 1px solid $soft-grey;
+  padding: 10px $room-chat-header-left-right-padding;
+}
