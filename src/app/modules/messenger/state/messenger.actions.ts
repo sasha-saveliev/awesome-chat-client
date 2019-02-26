@@ -8,7 +8,8 @@ export enum MessengerActionTypes {
   SetCurrentUser = '[Messenger] Set Current User',
 
   AddRoom = '[Messenger] Add Room',
-  AddRooms = '[Messenger] Add Rooms'
+  AddRooms = '[Messenger] Add Rooms',
+  SetActiveRoom = '[Messenger] Set Active Room'
 }
 
 export class AddUsersAction implements Action {
@@ -41,4 +42,11 @@ export class AddRoomAction implements Action {
   constructor(public payload: Room) {}
 }
 
-export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction | AddRoomsAction | SetCurrentUserAction;
+export class SetActiveRoomAction implements Action {
+  public readonly type = MessengerActionTypes.SetActiveRoom;
+
+  constructor(public payload: Room) {}
+}
+
+export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction
+  | AddRoomsAction | SetActiveRoomAction | SetCurrentUserAction;

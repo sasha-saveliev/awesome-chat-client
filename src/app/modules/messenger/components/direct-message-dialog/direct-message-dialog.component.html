@@ -1,0 +1,4 @@
+<h1 mat-dialog-title>Direct messages</h1>
+<div mat-dialog-content>
+  <div (click)="createRoom(user.id)" *ngFor="let user of dialogData.users">{{user.firstName + ' ' + user.lastName}}</div>
+</div>
