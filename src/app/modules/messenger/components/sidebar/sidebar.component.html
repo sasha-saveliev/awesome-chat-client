@@ -1,1 +1,4 @@
 <ac-sidebar-header></ac-sidebar-header>
+<ul>
+  <li (click)="toRoom(room.id)" *ngFor="let room of rooms">{{getRoomName(room)}}</li>
+</ul>

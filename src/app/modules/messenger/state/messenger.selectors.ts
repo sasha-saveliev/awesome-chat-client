@@ -7,3 +7,13 @@ export const getUsersSelector = createSelector(
   getMessengerFeatureStateSelector,
   state => state.users
 );
+
+export const getRoomsSelector = createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.rooms
+);
+
+export const getCurrentUserSelector = createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.currentUser
+);
