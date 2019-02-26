@@ -12,7 +12,9 @@ export class SocketService {
 
   public initConnection(): void {
     this.socket = io(API_URL);
+  }
 
-    this.socket.emit('message', { test: 1 });
+  public getConnection(): SocketIOClient.Socket {
+    return this.socket;
   }
 }

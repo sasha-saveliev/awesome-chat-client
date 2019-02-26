@@ -1,10 +1,11 @@
 import { Action } from '@ngrx/store';
 
-import { User } from '../models';
+import { Room, User } from '../models';
 
 export enum MessengerActionTypes {
   AddUsers = '[Messenger] Add Users',
   AddUser = '[Messenger] Add User',
+  AddRoom = '[Messenger] Add Room'
 }
 
 export class AddUsersAction implements Action {
@@ -19,4 +20,10 @@ export class AddUserAction implements Action {
   constructor(public payload: User) {}
 }
 
-export type MessengerActions = AddUsersAction | AddUserAction;
+export class AddRoomAction implements Action {
+  public readonly type = MessengerActionTypes.AddRoom;
+
+  constructor(public payload: Room) {}
+}
+
+export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction;
