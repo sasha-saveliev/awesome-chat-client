@@ -1,3 +1,3 @@
 <ac-sidebar-header></ac-sidebar-header>
-<ac-sidebar-room (click)="toRoom(room.id)" *ngFor="let room of rooms" [room]="room"></ac-sidebar-room>
+<ac-sidebar-room (click)="setActiveChat(room)" *ngFor="let room of rooms" [room]="room"></ac-sidebar-room>
 

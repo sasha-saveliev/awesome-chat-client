@@ -1,0 +1,6 @@
+@import 'shared';
+
+:host {
+  display: block;
+  width: calc(100% - #{$sidebar-width});
+}

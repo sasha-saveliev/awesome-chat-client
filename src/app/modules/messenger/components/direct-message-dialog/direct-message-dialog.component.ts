@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { DirectMessageDialogDataModel } from '../../models/direct-message-dialog-data.model';
@@ -17,8 +16,7 @@ export class DirectMessageDialogComponent {
     @Inject(MAT_DIALOG_DATA) public readonly dialogData: DirectMessageDialogDataModel,
     public readonly dialogRef: MatDialogRef<DirectMessageDialogComponent>,
     public readonly roomService: RoomService,
-    public readonly store: Store<State>,
-    public readonly router: Router
+    public readonly store: Store<State>
     ) { }
 
   public createRoom(userId: number) {
@@ -32,12 +30,9 @@ export class DirectMessageDialogComponent {
           this.store.dispatch(new SetActiveRoomAction(room));
 
           this.dialogRef.close();
-          this.router.navigate(['home', room.id]);
         });
     }
 
-    this.dialogRef.close();
-
-    return this.router.navigate(['home', existingRoom.id]);
+    return this.dialogRef.close();
   }
 }
