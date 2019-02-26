@@ -12,6 +12,10 @@ export class UsersService {
     public readonly http: HttpClient
   ) { }
 
+  public fetchCurrentUser(): Observable<User> {
+    return this.http.get<User>('users/current');
+  }
+
   public fetchAll(): Observable<User[]> {
     return this.http.get<User[]>('users');
   }

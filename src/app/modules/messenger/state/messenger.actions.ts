@@ -5,7 +5,10 @@ import { Room, User } from '../models';
 export enum MessengerActionTypes {
   AddUsers = '[Messenger] Add Users',
   AddUser = '[Messenger] Add User',
-  AddRoom = '[Messenger] Add Room'
+  SetCurrentUser = '[Messenger] Set Current User',
+
+  AddRoom = '[Messenger] Add Room',
+  AddRooms = '[Messenger] Add Rooms'
 }
 
 export class AddUsersAction implements Action {
@@ -20,10 +23,22 @@ export class AddUserAction implements Action {
   constructor(public payload: User) {}
 }
 
+export class SetCurrentUserAction implements Action {
+  public readonly type = MessengerActionTypes.SetCurrentUser;
+
+  constructor(public payload: User) {}
+}
+
+export class AddRoomsAction implements Action {
+  public readonly type = MessengerActionTypes.AddRooms;
+
+  constructor(public payload: Room[]) {}
+}
+
 export class AddRoomAction implements Action {
   public readonly type = MessengerActionTypes.AddRoom;
 
   constructor(public payload: Room) {}
 }
 
-export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction;
+export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction | AddRoomsAction | SetCurrentUserAction;

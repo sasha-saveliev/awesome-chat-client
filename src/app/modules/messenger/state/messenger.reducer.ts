@@ -6,11 +6,15 @@ export interface State {
 }
 
 export interface MessengerState {
+  currentUser: User;
+
   users: User[];
   rooms: Room[];
 }
 
 const initialState: MessengerState = {
+  currentUser: null,
+
   users: [],
   rooms: []
 };
@@ -31,10 +35,24 @@ export function messengerReducer(state = initialState, action: MessengerActions)
       };
     }
 
+    case MessengerActionTypes.SetCurrentUser: {
+      return {
+        ...state,
+        currentUser: action.payload
+      };
+    }
+
     case MessengerActionTypes.AddRoom: {
       return {
         ...state,
         rooms: [...state.rooms, action.payload]
+      };
+    }
+
+    case MessengerActionTypes.AddRooms: {
+      return {
+        ...state,
+        rooms: action.payload
       };
     }
 

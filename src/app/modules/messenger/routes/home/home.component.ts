@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { SocketService } from '../../../../socket/services';
-import { User } from '../../models';
+import { Room, User } from '../../models';
 import { UsersService } from '../../services';
 import { RoomService } from '../../services/room.service';
-import { AddUsersAction, State } from '../../state';
+import { AddRoomsAction, AddUsersAction, SetCurrentUserAction, State } from '../../state';
 
 @Component({
   selector: 'ac-home',
@@ -21,6 +21,12 @@ export class HomeRouteComponent {
     public readonly roomService: RoomService
   ) {
     this.socketService.initConnection();
+
+    this.usersService.fetchCurrentUser()
+      .subscribe((user: User) => this.store.dispatch(new SetCurrentUserAction(user)));
+
+    this.roomService.fetchRooms()
+      .subscribe((rooms: Room[]) => this.store.dispatch(new AddRoomsAction(rooms)));
 
     this.usersService.fetchAll()
       .subscribe((users: User[]) => this.store.dispatch(new AddUsersAction(users)));

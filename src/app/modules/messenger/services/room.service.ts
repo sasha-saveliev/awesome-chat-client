@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,8 +10,13 @@ import { Room } from '../models';
 })
 export class RoomService {
   constructor(
-    public readonly socketService: SocketService
+    public readonly socketService: SocketService,
+    public readonly http: HttpClient
   ) {}
+
+  public fetchRooms(): Observable<Room[]> {
+    return this.http.get<Room[]>('rooms');
+  }
 
   public createRoom(participants: number[]): Observable<Room> {
     return new Observable(observer => {
