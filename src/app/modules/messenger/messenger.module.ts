@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 
 import { MessangerRoutingModule } from './messanger-routing.module';
@@ -34,6 +35,7 @@ import { messengerReducer } from './state';
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
     MessangerRoutingModule,
     StoreModule.forFeature('messenger', messengerReducer)
   ]

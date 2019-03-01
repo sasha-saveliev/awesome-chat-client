@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { RoomsEvents } from '../../../socket/events';
 import { SocketService } from '../../../socket/services/socket.service';
 import { Room } from '../models';
 
@@ -21,7 +22,7 @@ export class RoomService {
   public createRoom(participants: number[]): Observable<Room> {
     return new Observable(observer => {
       this.socketService.getConnection()
-        .emit('[Rooms] Create room', { participants }, (room: Room) => observer.next(room));
+        .emit(RoomsEvents.CreateRoom, { participants }, (room: Room) => observer.next(room));
     });
   }
 }

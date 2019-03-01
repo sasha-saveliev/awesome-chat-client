@@ -1,1 +1,6 @@
-<span>room chat footer</span>
+<form (ngSubmit)="submitMessage();" #messageForm="ngForm">
+  <mat-form-field>
+    <input matInput name="text" placeholder="Type your message" id="text" [(ngModel)]="messageModel.text">
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
+</form>

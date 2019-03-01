@@ -65,6 +65,18 @@ export function messengerReducer(state = initialState, action: MessengerActions)
       };
     }
 
+    case MessengerActionTypes.AddRoomMessage: {
+      const { payload } = action;
+      const targetRoom = state.rooms.find(room => room.id === payload.room.id);
+
+      targetRoom.messages.push(payload);
+
+      return {
+        ...state,
+        rooms: [...state.rooms]
+      };
+    }
+
     default: {
       return state;
     }

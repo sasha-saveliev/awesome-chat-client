@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Room } from '../../models';
+import { Message, Room, User } from '../../models';
+import { MessageService } from '../../services';
+import { AddRoomMessageAction, State } from '../../state';
+import { MessageFormModel } from './footer/message-form.model';
 
 @Component({
   selector: 'ac-room-chat',
@@ -9,4 +13,16 @@ import { Room } from '../../models';
 })
 export class RoomChatComponent {
   @Input() public room: Room;
+  @Input() public currentUser: User;
+
+  constructor(
+    public readonly messageService: MessageService,
+    public readonly store: Store<State>,
+    ) {}
+
+  public submitMessage(messageModel: MessageFormModel) {
+    this.messageService
+      .createMessage(this.currentUser, messageModel, this.room)
+      .subscribe((message: Message) => this.store.dispatch(new AddRoomMessageAction(message)));
+  }
 }

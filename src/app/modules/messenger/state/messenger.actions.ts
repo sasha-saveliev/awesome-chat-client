@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Room, User } from '../models';
+import { Message, Room, User } from '../models';
 
 export enum MessengerActionTypes {
   AddUsers = '[Messenger] Add Users',
@@ -9,7 +9,8 @@ export enum MessengerActionTypes {
 
   AddRoom = '[Messenger] Add Room',
   AddRooms = '[Messenger] Add Rooms',
-  SetActiveRoom = '[Messenger] Set Active Room'
+  SetActiveRoom = '[Messenger] Set Active Room',
+  AddRoomMessage = '[Messenger] Add Room Message',
 }
 
 export class AddUsersAction implements Action {
@@ -48,5 +49,11 @@ export class SetActiveRoomAction implements Action {
   constructor(public payload: Room) {}
 }
 
+export class AddRoomMessageAction implements Action {
+  public readonly type = MessengerActionTypes.AddRoomMessage;
+
+  constructor(public payload: Message) {}
+}
+
 export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction
-  | AddRoomsAction | SetActiveRoomAction | SetCurrentUserAction;
+  | AddRoomsAction | AddRoomMessageAction | SetActiveRoomAction | SetCurrentUserAction;

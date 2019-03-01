@@ -1,57 +1,7 @@
-<ac-room-chat-header></ac-room-chat-header>
-<div class="messages-container">
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div><div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <var>v</var>
-
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-  <div>some message</div>
-
+<div *ngIf="room" class="room-chat-container">
+  <ac-room-chat-header></ac-room-chat-header>
+  <div class="messages-container">
+    <div *ngFor="let message of room.messages">User id: {{message.authorId}} - {{message.text}}</div>
+  </div>
+  <ac-room-chat-footer (message)="submitMessage($event)"></ac-room-chat-footer>
 </div>
-<ac-room-chat-footer></ac-room-chat-footer>

@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 
 import { SocketService } from '../../../../socket/services';
+import { MessageSocketService } from '../../../../socket/services/message.service';
 import { Room, User } from '../../models';
 import { UsersService } from '../../services';
 import { RoomService } from '../../services/room.service';
@@ -34,10 +35,12 @@ export class HomeRouteComponent implements OnInit, OnDestroy {
     public readonly usersService: UsersService,
     public readonly store: Store<State>,
     public readonly socketService: SocketService,
+    public readonly messageSocketService: MessageSocketService,
     public readonly roomService: RoomService,
     public readonly cd: ChangeDetectorRef,
   ) {
     this.socketService.initConnection();
+    this.messageSocketService.initSubscribers();
 
     this.usersService.fetchCurrentUser()
       .subscribe((user: User) => this.store.dispatch(new SetCurrentUserAction(user)));
