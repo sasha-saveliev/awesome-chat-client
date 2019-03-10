@@ -1,7 +1,13 @@
 <div *ngIf="room" class="room-chat-container">
   <ac-room-chat-header></ac-room-chat-header>
   <div class="messages-container">
-    <div *ngFor="let message of room.messages">User id: {{message.authorId}} - {{message.text}}</div>
+    <div *ngFor="let message of room.messages; index as i">
+      <ac-room-chat-message
+      [message]="message"
+      [author]="getMessageAuthor(message)"
+      [showAuthor]="room.messages[i-1] ? room.messages[i-1].authorId !== message.authorId : true"
+      class="message-wrapper"></ac-room-chat-message>
+    </div>
   </div>
   <ac-room-chat-footer (message)="submitMessage($event)"></ac-room-chat-footer>
 </div>

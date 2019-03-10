@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 import { MessageFormModel } from './message-form.model';
 
 @Component({
   selector: 'ac-room-chat-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RoomChatFooterComponent {
   @Output() public message = new EventEmitter<MessageFormModel>();

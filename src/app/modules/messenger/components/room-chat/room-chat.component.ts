@@ -25,4 +25,9 @@ export class RoomChatComponent {
       .createMessage(this.currentUser, messageModel, this.room)
       .subscribe((message: Message) => this.store.dispatch(new AddRoomMessageAction(message)));
   }
+
+  // TODO: Check how to reduce count of checks
+  public getMessageAuthor(message: Message): User {
+    return this.room.participants.find(({ id }) => id === message.authorId);
+  }
 }

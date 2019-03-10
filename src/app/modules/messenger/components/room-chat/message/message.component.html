@@ -1,0 +1,7 @@
+<div class="message-avatar" [ngClass]="{ hidden: !showAuthor }"></div>
+
+<div>
+  <div *ngIf="showAuthor" class="message-author">{{author.username}}</div>
+  <div class="message-text">{{message.text}}</div>
+  <div class="message-time">{{time}}</div>
+</div>

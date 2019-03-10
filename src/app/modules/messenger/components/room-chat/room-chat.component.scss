@@ -12,8 +12,12 @@
 
 .messages-container {
   height: calc(100% - (#{$room-chat-header-height} + #{$room-chat-footer-height}));
-  padding: 0 $room-chat-header-left-right-padding 25px $room-chat-header-left-right-padding;
+  padding: 10px $room-chat-header-left-right-padding 25px $room-chat-header-left-right-padding;
 
   box-sizing: border-box;
   overflow: auto;
+
+  .message-wrapper {
+    margin-bottom: 5px;
+  }
 }

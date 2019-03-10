@@ -1,4 +1,4 @@
 <ac-sidebar-header></ac-sidebar-header>
 <span (click)="openDirectMessageDialog()">add room</span>
-<ac-sidebar-room (click)="setActiveChat(room)" *ngFor="let room of rooms" [room]="room"></ac-sidebar-room>
+<ac-sidebar-room (click)="setActiveChat(room)" *ngFor="let room of rooms" [currentUser]="currentUser" [room]="room"></ac-sidebar-room>
 
