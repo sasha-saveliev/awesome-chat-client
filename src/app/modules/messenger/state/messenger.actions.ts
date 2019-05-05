@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { Message, Room, User } from '../models';
+import { SidebarSection } from '../models/sidebar-section.model';
 
 export enum MessengerActionTypes {
   AddUsers = '[Messenger] Add Users',
@@ -11,6 +12,8 @@ export enum MessengerActionTypes {
   AddRooms = '[Messenger] Add Rooms',
   SetActiveRoom = '[Messenger] Set Active Room',
   AddRoomMessage = '[Messenger] Add Room Message',
+
+  SetActiveSidebarSection = '[Messenger] Set Active Sidebar Section'
 }
 
 export class AddUsersAction implements Action {
@@ -55,5 +58,11 @@ export class AddRoomMessageAction implements Action {
   constructor(public payload: Message) {}
 }
 
+export class SetActiveSidebarSectionAction implements Action {
+  public readonly type = MessengerActionTypes.SetActiveSidebarSection;
+
+  constructor(public payload: SidebarSection) {}
+}
+
 export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction
-  | AddRoomsAction | AddRoomMessageAction | SetActiveRoomAction | SetCurrentUserAction;
+  | AddRoomsAction | AddRoomMessageAction | SetActiveRoomAction | SetCurrentUserAction | SetActiveSidebarSectionAction;

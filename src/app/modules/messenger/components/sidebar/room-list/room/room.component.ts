@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import * as moment from 'moment';
 
-import { Message, Room, User } from '../../../models';
+import { Message, Room, User } from '../../../../models';
 
 @Component({
   selector: 'ac-sidebar-room',

@@ -11,8 +11,11 @@ import { RoomChatFooterComponent } from './components/room-chat/footer/footer.co
 import { RoomChatHeaderComponent } from './components/room-chat/header/header.component';
 import { MessageComponent } from './components/room-chat/message/message.component';
 import { RoomChatComponent } from './components/room-chat/room-chat.component';
+import { SidebarContactsComponent } from './components/sidebar/contacts/contacts.component';
+import { SidebarFooterComponent } from './components/sidebar/footer/footer.component';
 import { SidebarHeaderComponent } from './components/sidebar/header/header.component';
-import { SidebarRoomComponent } from './components/sidebar/room/room.component';
+import { SidebarRoomListComponent } from './components/sidebar/room-list/room-list.component';
+import { SidebarRoomComponent } from './components/sidebar/room-list/room/room.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeRouteComponent } from './routes/home/home.component';
 import { messengerReducer } from './state';
@@ -26,13 +29,16 @@ import { messengerReducer } from './state';
 
     SidebarComponent,
     SidebarHeaderComponent,
+    SidebarFooterComponent,
     SidebarRoomComponent,
     DirectMessageDialogComponent,
 
     RoomChatComponent,
     RoomChatHeaderComponent,
     RoomChatFooterComponent,
-    MessageComponent
+    MessageComponent,
+    SidebarRoomListComponent,
+    SidebarContactsComponent
   ],
   imports: [
     CommonModule,

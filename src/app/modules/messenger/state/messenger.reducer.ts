@@ -1,4 +1,4 @@
-import { Room, User } from '../models';
+import { Room, SidebarSection, User } from '../models';
 import { MessengerActions, MessengerActionTypes } from './messenger.actions';
 
 export interface State {
@@ -9,6 +9,8 @@ export interface MessengerState {
   currentUser: User;
   activeRoom: Room;
 
+  activeSidebarSection: SidebarSection;
+
   users: User[];
   rooms: Room[];
 }
@@ -16,6 +18,12 @@ export interface MessengerState {
 const initialState: MessengerState = {
   currentUser: null,
   activeRoom: null,
+
+  // TODO: Add value from constants
+  activeSidebarSection: {
+    name: 'rooms',
+    icon: ''
+  },
 
   users: [],
   rooms: []
@@ -74,6 +82,13 @@ export function messengerReducer(state = initialState, action: MessengerActions)
       return {
         ...state,
         rooms: [...state.rooms]
+      };
+    }
+
+    case MessengerActionTypes.SetActiveSidebarSection: {
+      return {
+        ...state,
+        activeSidebarSection: action.payload
       };
     }
 

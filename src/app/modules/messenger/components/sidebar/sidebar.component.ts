@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 
-import { Room, User } from '../../models';
-import { SetActiveRoomAction, State } from '../../state';
+import { Room, SidebarSection, User } from '../../models';
+import { SetActiveRoomAction, SetActiveSidebarSectionAction, State } from '../../state';
 import { DirectMessageDialogComponent } from '../direct-message-dialog/direct-message-dialog.component';
 
 @Component({
@@ -12,7 +12,9 @@ import { DirectMessageDialogComponent } from '../direct-message-dialog/direct-me
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+  @Input() public activeSection: SidebarSection;
   @Input() public rooms: Room[];
+
   @Input() public users: User[];
   @Input() public currentUser: User;
 
@@ -31,7 +33,15 @@ export class SidebarComponent {
     });
   }
 
-  public setActiveChat(room: Room) {
+  public setActiveRoom(room: Room): void {
     this.store.dispatch(new SetActiveRoomAction(room));
+  }
+
+  public setActiveSection(section: SidebarSection): void {
+    this.store.dispatch(new SetActiveSidebarSectionAction(section));
+  }
+
+  public isSectionActive(sectionName: string): boolean {
+    return this.activeSection && this.activeSection.name === sectionName;
   }
 }

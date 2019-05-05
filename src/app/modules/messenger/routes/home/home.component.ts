@@ -4,13 +4,14 @@ import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 
 import { SocketService } from '../../../../socket/services';
 import { MessageSocketService } from '../../../../socket/services/message.service';
-import { Room, User } from '../../models';
+import { Room, SidebarSection, User } from '../../models';
 import { UsersService } from '../../services';
 import { RoomService } from '../../services/room.service';
 import {
   AddRoomsAction,
   AddUsersAction,
   getActiveRoomSelector,
+  getActiveSidebarSectionSelector,
   getCurrentUserSelector,
   getRoomsSelector,
   getUsersSelector,
@@ -27,6 +28,8 @@ import {
 export class HomeRouteComponent implements OnInit, OnDestroy {
   public currentUser: User;
   public users: User[];
+
+  public activeSidebarSection: SidebarSection;
 
   public activeRoom: Room;
   public rooms: Room[];
@@ -72,10 +75,16 @@ export class HomeRouteComponent implements OnInit, OnDestroy {
       });
 
     this.store.pipe(select(getActiveRoomSelector), untilComponentDestroyed(this))
-    .subscribe((activeRoom: Room) => {
-      this.activeRoom = activeRoom;
-      this.cd.detectChanges();
-    });
+      .subscribe((activeRoom: Room) => {
+        this.activeRoom = activeRoom;
+        this.cd.detectChanges();
+      });
+
+    this.store.pipe(select(getActiveSidebarSectionSelector), untilComponentDestroyed(this))
+      .subscribe((activeSidebarSection: SidebarSection) => {
+        this.activeSidebarSection = activeSidebarSection;
+        this.cd.detectChanges();
+      });
   }
 
   public ngOnDestroy(): void { }

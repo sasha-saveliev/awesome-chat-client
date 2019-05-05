@@ -22,3 +22,8 @@ export const getActiveRoomSelector = createSelector(
   getMessengerFeatureStateSelector,
   state => state.activeRoom
 );
+
+export const getActiveSidebarSectionSelector = createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.activeSidebarSection
+);
