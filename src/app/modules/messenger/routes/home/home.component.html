@@ -1,2 +1,9 @@
-<ac-sidebar [activeSection]="activeSidebarSection" [activeRoom]="activeRoom" [rooms]="rooms" [users]="users" [currentUser]="currentUser"></ac-sidebar>
+<ac-sidebar
+  [activeSection]="activeSidebarSection"
+  [activeRoom]="activeRoom"
+  [rooms]="rooms"
+  [users]="users"
+  [usersOnline]="usersOnline"
+  [currentUser]="currentUser">
+</ac-sidebar>
 <ac-room-chat [currentUser]="currentUser" [room]="activeRoom"></ac-room-chat>

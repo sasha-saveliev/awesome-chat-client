@@ -17,6 +17,7 @@ export class SidebarComponent {
   @Input() public rooms: Room[];
 
   @Input() public users: User[];
+  @Input() public usersOnline: number[];
   @Input() public currentUser: User;
 
   constructor(

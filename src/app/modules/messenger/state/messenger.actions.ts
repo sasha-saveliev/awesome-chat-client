@@ -8,6 +8,10 @@ export enum MessengerActionTypes {
   AddUser = '[Messenger] Add User',
   SetCurrentUser = '[Messenger] Set Current User',
 
+  AddOnlineUsers = '[Messenger] Add Online Users',
+  AddOnlineUser = '[Messenger] Add Online User',
+  RemoveOnlineUser = '[Messenger] Remove Online User',
+
   AddRoom = '[Messenger] Add Room',
   AddRooms = '[Messenger] Add Rooms',
   SetActiveRoom = '[Messenger] Set Active Room',
@@ -26,6 +30,24 @@ export class AddUserAction implements Action {
   public readonly type = MessengerActionTypes.AddUser;
 
   constructor(public payload: User) {}
+}
+
+export class AddOnlineUsersAction implements Action {
+  public readonly type = MessengerActionTypes.AddOnlineUsers;
+
+  constructor(public payload: number[]) {}
+}
+
+export class AddOnlineUserAction implements Action {
+  public readonly type = MessengerActionTypes.AddOnlineUser;
+
+  constructor(public payload: number) {}
+}
+
+export class RemoveOnlineUserAction implements Action {
+  public readonly type = MessengerActionTypes.RemoveOnlineUser;
+
+  constructor(public payload: number) {}
 }
 
 export class SetCurrentUserAction implements Action {
@@ -65,4 +87,5 @@ export class SetActiveSidebarSectionAction implements Action {
 }
 
 export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction
-  | AddRoomsAction | AddRoomMessageAction | SetActiveRoomAction | SetCurrentUserAction | SetActiveSidebarSectionAction;
+  | AddRoomsAction | AddRoomMessageAction | SetActiveRoomAction | SetCurrentUserAction
+  | SetActiveSidebarSectionAction | AddOnlineUsersAction | AddOnlineUserAction | RemoveOnlineUserAction;

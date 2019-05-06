@@ -1,4 +1,4 @@
-<ac-sidebar-room *ngFor="let room of notEmptyRooms"
+<ac-sidebar-room *ngFor="let room of sortedRooms"
   (click)="setActiveRoom(room)"
   [room]="room"
   [currentUser]="currentUser"

@@ -2,17 +2,18 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { select, Store } from '@ngrx/store';
 import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 
-import { SocketService } from '../../../../socket/services';
-import { MessageSocketService } from '../../../../socket/services/message.service';
+import { MessageSocketService, SocketService, UserStatusSocketService } from '../../../../socket/services';
 import { Room, SidebarSection, User } from '../../models';
 import { UsersService } from '../../services';
 import { RoomService } from '../../services/room.service';
 import {
+  AddOnlineUsersAction,
   AddRoomsAction,
   AddUsersAction,
   getActiveRoomSelector,
   getActiveSidebarSectionSelector,
   getCurrentUserSelector,
+  getOnlineUsersSelector,
   getRoomsSelector,
   getUsersSelector,
   SetCurrentUserAction,
@@ -28,6 +29,7 @@ import {
 export class HomeRouteComponent implements OnInit, OnDestroy {
   public currentUser: User;
   public users: User[];
+  public usersOnline: number[];
 
   public activeSidebarSection: SidebarSection;
 
@@ -39,11 +41,13 @@ export class HomeRouteComponent implements OnInit, OnDestroy {
     public readonly store: Store<State>,
     public readonly socketService: SocketService,
     public readonly messageSocketService: MessageSocketService,
+    public readonly userStatusSocketService: UserStatusSocketService,
     public readonly roomService: RoomService,
     public readonly cd: ChangeDetectorRef,
   ) {
     this.socketService.initConnection();
     this.messageSocketService.initSubscribers();
+    this.userStatusSocketService.initSubscribers();
 
     this.usersService.fetchCurrentUser()
       .subscribe((user: User) => this.store.dispatch(new SetCurrentUserAction(user)));
@@ -53,6 +57,9 @@ export class HomeRouteComponent implements OnInit, OnDestroy {
 
     this.usersService.fetchAll()
       .subscribe((users: User[]) => this.store.dispatch(new AddUsersAction(users)));
+
+    this.usersService.fetchOnline()
+      .subscribe((usersOnline: number[]) => this.store.dispatch(new AddOnlineUsersAction(usersOnline)));
   }
 
   public ngOnInit(): void {
@@ -83,6 +90,12 @@ export class HomeRouteComponent implements OnInit, OnDestroy {
     this.store.pipe(select(getActiveSidebarSectionSelector), untilComponentDestroyed(this))
       .subscribe((activeSidebarSection: SidebarSection) => {
         this.activeSidebarSection = activeSidebarSection;
+        this.cd.detectChanges();
+      });
+
+    this.store.pipe(select(getOnlineUsersSelector), untilComponentDestroyed(this))
+      .subscribe((usersOnline: number[]) => {
+        this.usersOnline = usersOnline;
         this.cd.detectChanges();
       });
   }

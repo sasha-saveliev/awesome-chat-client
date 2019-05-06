@@ -1,4 +1,4 @@
-<ac-sidebar-contact-item *ngFor="let user of users"
+<ac-sidebar-contact-item *ngFor="let user of sortedByStatusUsers"
   (click)="toggleRoom(user)"
   [user]="user"
   [class.contact-item-active]="activeContact && (activeContact.id === user.id)">

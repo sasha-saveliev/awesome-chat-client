@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as moment from 'moment';
 
 import { Message, Room, User } from '../../../../models';
@@ -6,8 +6,7 @@ import { Message, Room, User } from '../../../../models';
 @Component({
   selector: 'ac-sidebar-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./room.component.scss']
 })
 export class SidebarRoomComponent {
   @Input() public room: Room;

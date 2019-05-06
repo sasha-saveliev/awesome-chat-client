@@ -27,3 +27,8 @@ export const getActiveSidebarSectionSelector = createSelector(
   getMessengerFeatureStateSelector,
   state => state.activeSidebarSection
 );
+
+export const getOnlineUsersSelector = createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.usersOnline
+);

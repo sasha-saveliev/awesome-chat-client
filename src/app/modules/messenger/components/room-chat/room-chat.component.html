@@ -8,7 +8,6 @@
         [showAuthor]="room.messages[i-1] ? room.messages[i-1].authorId !== message.authorId : true"
         class="message-wrapper"></ac-room-chat-message>
     </div>
-    <!-- {{room | json}} -->
     <div *ngIf="room.messages.length === 0" class="messages-container-empty">
       No messages here yet
     </div>

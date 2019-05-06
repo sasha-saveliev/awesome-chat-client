@@ -12,6 +12,8 @@ export interface MessengerState {
   activeSidebarSection: SidebarSection;
 
   users: User[];
+  usersOnline: number[];
+
   rooms: Room[];
 }
 
@@ -26,6 +28,8 @@ const initialState: MessengerState = {
   },
 
   users: [],
+  usersOnline: [],
+
   rooms: []
 };
 
@@ -42,6 +46,36 @@ export function messengerReducer(state = initialState, action: MessengerActions)
       return {
         ...state,
         users: [...state.users, action.payload]
+      };
+    }
+
+    case MessengerActionTypes.AddOnlineUsers: {
+      return {
+        ...state,
+        usersOnline: action.payload
+      };
+    }
+
+    case MessengerActionTypes.AddOnlineUser: {
+      const { payload: userId } = action;
+      const { usersOnline } = state;
+
+      if (usersOnline.includes(userId)) {
+        return {
+          ...state
+        };
+      }
+
+      return {
+        ...state,
+        usersOnline: [...state.usersOnline, userId]
+      };
+    }
+
+    case MessengerActionTypes.RemoveOnlineUser: {
+      return {
+        ...state,
+        usersOnline: state.usersOnline.filter(userId => userId !== action.payload)
       };
     }
 

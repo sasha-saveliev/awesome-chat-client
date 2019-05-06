@@ -1,4 +1,16 @@
 <ac-sidebar-header></ac-sidebar-header>
-<ac-sidebar-room-list *ngIf="isSectionActive('rooms')" [activeRoom]="activeRoom" [rooms]="rooms" [currentUser]="currentUser" (activeRoomChanged)="setActiveRoom($event)"></ac-sidebar-room-list>
-<ac-sidebar-contacts *ngIf="isSectionActive('contacts')" [users]="users" (roomChanged)="createOrOpenRoom($event)"></ac-sidebar-contacts>
+
+<ac-sidebar-room-list *ngIf="isSectionActive('rooms')"
+  [activeRoom]="activeRoom"
+  [rooms]="rooms"
+  [currentUser]="currentUser"
+  (activeRoomChanged)="setActiveRoom($event)">
+</ac-sidebar-room-list>
+
+<ac-sidebar-contacts *ngIf="isSectionActive('contacts')"
+  [users]="users"
+  [usersOnline]="usersOnline"
+  (roomChanged)="createOrOpenRoom($event)">
+</ac-sidebar-contacts>
+
 <ac-sidebar-footer (activeSectionChanged)="setActiveSection($event)"></ac-sidebar-footer>

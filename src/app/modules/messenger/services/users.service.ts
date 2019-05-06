@@ -19,4 +19,8 @@ export class UsersService {
   public fetchAll(): Observable<User[]> {
     return this.http.get<User[]>('users');
   }
+
+  public fetchOnline(): Observable<number[]> {
+    return this.http.get<number[]>('users/online');
+  }
 }

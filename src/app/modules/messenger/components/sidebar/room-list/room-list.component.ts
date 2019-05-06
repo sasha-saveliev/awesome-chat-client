@@ -18,7 +18,14 @@ export class SidebarRoomListComponent {
     this.activeRoomChanged.emit(room);
   }
 
-  public get notEmptyRooms() {
-    return this.rooms.filter(({ messages }) => messages.length > 0);
+  public get sortedRooms() {
+    return this.rooms
+      .filter(({ messages }) => messages.length > 0)
+      .sort((firstRoom, secondRoom) => {
+        const firstRoomLastMessage = firstRoom.messages[firstRoom.messages.length - 1];
+        const secondRoomLastMessage = secondRoom.messages[secondRoom.messages.length - 1];
+
+        return secondRoomLastMessage.timestamp - firstRoomLastMessage.timestamp;
+      });
   }
 }

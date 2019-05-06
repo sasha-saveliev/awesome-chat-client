@@ -19,7 +19,7 @@ export class MessageSocketService {
     this.onNewMessage();
   }
 
-  public onNewMessage() {
+  public onNewMessage(): void {
     this.socketService
       .getConnection()
       .on(MessagesEvents.NewMessage, (message: Message) => this.store.dispatch(new AddRoomMessageAction(message)));
