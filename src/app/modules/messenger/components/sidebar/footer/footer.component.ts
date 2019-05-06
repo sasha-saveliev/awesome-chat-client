@@ -12,10 +12,10 @@ export class SidebarFooterComponent {
 
   public readonly sections: SidebarSection[] = [{
     name: 'rooms',
-    icon: 'message'
+    icon: 'fas fa-comments'
   }, {
     name: 'contacts',
-    icon: 'contacts'
+    icon: 'far fa-address-book'
   }];
 
   public setActiveSection(section: SidebarSection): void {

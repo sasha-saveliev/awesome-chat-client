@@ -8,6 +8,7 @@ import { Room, User } from '../../../models';
   styleUrls: ['./room-list.component.scss']
 })
 export class SidebarRoomListComponent {
+  @Input() public readonly activeRoom: Room;
   @Input() public readonly rooms: Room[];
   @Input() public readonly currentUser: User;
 
@@ -15,5 +16,9 @@ export class SidebarRoomListComponent {
 
   public setActiveRoom(room: Room): void {
     this.activeRoomChanged.emit(room);
+  }
+
+  public get notEmptyRooms() {
+    return this.rooms.filter(({ messages }) => messages.length > 0);
   }
 }

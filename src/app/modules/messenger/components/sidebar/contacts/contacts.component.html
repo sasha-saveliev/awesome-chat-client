@@ -1,3 +1,5 @@
-<p>
-  contacts works!
-</p>
+<ac-sidebar-contact-item *ngFor="let user of users"
+  (click)="toggleRoom(user)"
+  [user]="user"
+  [class.contact-item-active]="activeContact && (activeContact.id === user.id)">
+</ac-sidebar-contact-item>

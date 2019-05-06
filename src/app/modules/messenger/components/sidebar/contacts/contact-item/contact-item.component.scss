@@ -1,0 +1,19 @@
+@import 'color-palette';
+
+:host {
+  display: flex;
+  cursor: pointer;
+  padding: 8px 15px;
+
+  border-bottom: 1px solid $soft-grey;
+
+  .contact-item-avatar {
+    width: 35px;
+    height: 35px;
+
+    background-color: rosybrown;
+    border-radius: 50%;
+
+    margin-right: 10px;
+  }
+}

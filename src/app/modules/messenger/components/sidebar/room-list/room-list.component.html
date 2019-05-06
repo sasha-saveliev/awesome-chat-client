@@ -1,1 +1,6 @@
-<ac-sidebar-room (click)="setActiveRoom(room)" *ngFor="let room of rooms" [currentUser]="currentUser" [room]="room"></ac-sidebar-room>
+<ac-sidebar-room *ngFor="let room of notEmptyRooms"
+  (click)="setActiveRoom(room)"
+  [room]="room"
+  [currentUser]="currentUser"
+  [class.sidebar-room-active]="activeRoom && (activeRoom.id === room.id)">
+</ac-sidebar-room>

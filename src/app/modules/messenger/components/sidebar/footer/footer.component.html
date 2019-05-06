@@ -1,1 +1,3 @@
-<div *ngFor="let section of sections" (click)="setActiveSection(section)">{{section.name}}</div>
+<div *ngFor="let section of sections" (click)="setActiveSection(section)">
+  <i class="{{section.icon}} section-icon"></i>
+</div>

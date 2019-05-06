@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 
 import { Room, SidebarSection, User } from '../../models';
-import { SetActiveRoomAction, SetActiveSidebarSectionAction, State } from '../../state';
-import { DirectMessageDialogComponent } from '../direct-message-dialog/direct-message-dialog.component';
+import { RoomService } from '../../services';
+import { AddRoomAction, SetActiveRoomAction, SetActiveSidebarSectionAction, State } from '../../state';
 
 @Component({
   selector: 'ac-sidebar',
@@ -13,6 +13,7 @@ import { DirectMessageDialogComponent } from '../direct-message-dialog/direct-me
 })
 export class SidebarComponent {
   @Input() public activeSection: SidebarSection;
+  @Input() public activeRoom: Room;
   @Input() public rooms: Room[];
 
   @Input() public users: User[];
@@ -20,17 +21,23 @@ export class SidebarComponent {
 
   constructor(
     public readonly store: Store<State>,
-    public readonly dialog: MatDialog
+    public readonly dialog: MatDialog,
+    public readonly roomService: RoomService,
     ) {}
 
-  public openDirectMessageDialog() {
-    this.dialog.open(DirectMessageDialogComponent, {
-      data: {
-        rooms: this.rooms,
-        users: this.users,
-        currentUser: this.currentUser
-      }
-    });
+  public createOrOpenRoom(user: User): void {
+    const { currentUser, rooms } = this;
+    const existingRoom = rooms.find(room => room.participants.some(participant => participant.id === user.id));
+
+    if (existingRoom) {
+      this.setActiveRoom(existingRoom);
+    } else {
+      this.roomService.createRoom([user.id, currentUser.id])
+        .subscribe(room => {
+          this.store.dispatch(new AddRoomAction(room));
+          this.setActiveRoom(room);
+        });
+    }
   }
 
   public setActiveRoom(room: Room): void {
