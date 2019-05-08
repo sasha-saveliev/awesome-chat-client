@@ -14,7 +14,7 @@
     "postinstall:web": "node postinstall-web",
     "postinstall:electron": "node postinstall",
     "start": "npm run postinstall:electron && npm-run-all -p ng:serve electron:serve",
-    "start:web": "npm run postinstall:web && ng serve -o --port=5200",
+    "start:web": "npm run postinstall:web && ng serve -o --port=4200",
     "ng:serve": "ng serve --port=5200",
     "build": "npm run postinstall:electron && npm run electron:serve-tsc && ng build",
     "build:dev": "npm run build -- -c dev",

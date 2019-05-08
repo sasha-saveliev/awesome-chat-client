@@ -14,10 +14,11 @@ import { MessageFormModel } from './footer/message-form.model';
 export class RoomChatComponent {
   @Input() public room: Room;
   @Input() public currentUser: User;
+  @Input() public usersOnline: number[];
 
   constructor(
     public readonly messageService: MessageService,
-    public readonly store: Store<State>,
+    public readonly store: Store<State>
     ) {}
 
   public submitMessage(messageModel: MessageFormModel) {
@@ -29,5 +30,11 @@ export class RoomChatComponent {
   // TODO: Check how to reduce count of checks
   public getMessageAuthor(message: Message): User {
     return this.room.participants.find(({ id }) => id === message.authorId);
+  }
+
+  public getHeaderTitle(): string {
+    return this.room.participants
+      .find(participant => participant.id !== this.currentUser.id)
+      .username;
   }
 }

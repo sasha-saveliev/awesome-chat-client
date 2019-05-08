@@ -24,7 +24,7 @@ import {
   selector: 'ac-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeRouteComponent implements OnInit, OnDestroy {
   public currentUser: User;

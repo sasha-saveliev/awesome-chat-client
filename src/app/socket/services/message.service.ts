@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Message } from '../../modules/messenger/models';
+import { NotificationService } from '../../modules/messenger/services';
 import { AddRoomMessageAction, State } from '../../modules/messenger/state';
 import { MessagesEvents } from '../events';
 import { SocketService } from './socket.service';
+
+import { ElectronService } from '../../providers/electron.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +15,7 @@ import { SocketService } from './socket.service';
 export class MessageSocketService {
   constructor(
     public readonly socketService: SocketService,
+    public readonly notificationService: NotificationService,
     public readonly store: Store<State>,
     ) {}
 
@@ -22,6 +26,9 @@ export class MessageSocketService {
   public onNewMessage(): void {
     this.socketService
       .getConnection()
-      .on(MessagesEvents.NewMessage, (message: Message) => this.store.dispatch(new AddRoomMessageAction(message)));
+      .on(MessagesEvents.NewMessage, (message: Message) => {
+        this.store.dispatch(new AddRoomMessageAction(message));
+        this.notificationService.notifyAboutNewMessage(message);
+      });
   }
 }

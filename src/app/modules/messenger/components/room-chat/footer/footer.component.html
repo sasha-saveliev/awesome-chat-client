@@ -1,6 +1,7 @@
-<form (ngSubmit)="submitMessage();" #messageForm="ngForm">
-  <mat-form-field>
-    <input matInput name="text" placeholder="Type your message" id="text" [(ngModel)]="messageModel.text">
+<form (ngSubmit)="submitMessage();" #messageForm="ngForm" class="message-form">
+  <mat-form-field class="message-input">
+    <input matInput id="text" name="text" placeholder="Type your message" [(ngModel)]="messageModel.text">
   </mat-form-field>
-  <button type="submit" mat-raised-button color="primary">Submit</button>
+
+  <button class="submit-button fas fa-paper-plane"></button>
 </form>

@@ -13,14 +13,24 @@ export const getRoomsSelector = createSelector(
   state => state.rooms
 );
 
+export const getActiveRoomSelector = createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.activeRoom
+);
+
+export const getRoomByIdSelector = id => createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.rooms.find(room => room.id === id)
+);
+
 export const getCurrentUserSelector = createSelector(
   getMessengerFeatureStateSelector,
   state => state.currentUser
 );
 
-export const getActiveRoomSelector = createSelector(
+export const getUserByIdSelector = id => createSelector(
   getMessengerFeatureStateSelector,
-  state => state.activeRoom
+  state => state.users.find(user => user.id === id)
 );
 
 export const getActiveSidebarSectionSelector = createSelector(

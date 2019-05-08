@@ -22,6 +22,16 @@ export class SidebarContactsComponent {
   }
 
   public get sortedByStatusUsers() {
-    return this.users.sort(user => this.usersOnline.includes(user.id) ? -1 : 1);
+    return this.users.sort((userA, userB) => {
+      if (this.usersOnline.includes(userA.id)) {
+        return -1;
+      }
+
+      if (this.usersOnline.includes(userB.id)) {
+        return 1;
+      }
+
+      return 0;
+    });
   }
 }

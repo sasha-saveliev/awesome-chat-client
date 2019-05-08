@@ -1,5 +1,5 @@
 <div *ngIf="room" class="room-chat-container">
-  <ac-room-chat-header></ac-room-chat-header>
+  <ac-room-chat-header [title]="getHeaderTitle()" [room]="room" [currentUser]="currentUser" [usersOnline]="usersOnline"></ac-room-chat-header>
   <div class="messages-container">
     <div *ngFor="let message of room.messages; index as i">
       <ac-room-chat-message
