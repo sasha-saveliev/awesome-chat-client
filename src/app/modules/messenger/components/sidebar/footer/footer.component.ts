@@ -16,6 +16,9 @@ export class SidebarFooterComponent {
   }, {
     name: 'contacts',
     icon: 'far fa-address-book'
+  }, {
+    name: 'settings',
+    icon: 'fas fa-cog'
   }];
 
   public setActiveSection(section: SidebarSection): void {

@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
+import { forkJoin } from 'rxjs';
 
-import { MessageSocketService, SocketService, UserStatusSocketService } from '../../../../socket/services';
+import { MessageSocketService, SocketService, UserSocketService } from '../../../../socket/services';
 import { Room, SidebarSection, TypingMessage, User } from '../../models';
 import { UsersService } from '../../services';
 import { RoomService } from '../../services/room.service';
@@ -43,25 +44,26 @@ export class HomeRouteComponent implements OnInit, OnDestroy {
     public readonly store: Store<State>,
     public readonly socketService: SocketService,
     public readonly messageSocketService: MessageSocketService,
-    public readonly userStatusSocketService: UserStatusSocketService,
+    public readonly userSocketService: UserSocketService,
     public readonly roomService: RoomService,
     public readonly cd: ChangeDetectorRef,
   ) {
     this.socketService.initConnection();
     this.messageSocketService.initSubscribers();
-    this.userStatusSocketService.initSubscribers();
+    this.userSocketService.initSubscribers();
 
-    this.usersService.fetchCurrentUser()
-      .subscribe((user: User) => this.store.dispatch(new SetCurrentUserAction(user)));
-
-    this.roomService.fetchRooms()
-      .subscribe((rooms: Room[]) => this.store.dispatch(new AddRoomsAction(rooms)));
-
-    this.usersService.fetchAll()
-      .subscribe((users: User[]) => this.store.dispatch(new AddUsersAction(users)));
-
-    this.usersService.fetchOnline()
-      .subscribe((usersOnline: number[]) => this.store.dispatch(new AddOnlineUsersAction(usersOnline)));
+    forkJoin(
+      this.usersService.fetchCurrentUser(),
+      this.roomService.fetchRooms(),
+      this.usersService.fetchAll(),
+      this.usersService.fetchOnline()
+    )
+    .subscribe(([user, rooms, users, usersOnline]) => {
+      this.store.dispatch(new SetCurrentUserAction(user));
+      this.store.dispatch(new AddRoomsAction(rooms));
+      this.store.dispatch(new AddUsersAction(users));
+      this.store.dispatch(new AddOnlineUsersAction(usersOnline));
+    });
   }
 
   public ngOnInit(): void {

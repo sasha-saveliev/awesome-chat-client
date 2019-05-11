@@ -1,0 +1,19 @@
+<h3 class="login-form-title">Login Form</h3>
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <mat-form-field>
+    <input matInput name="firstName" placeholder="First name" id="firstName" [(ngModel)]="signUpModel.firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="lastName" placeholder="Last name" id="lastName" [(ngModel)]="signUpModel.lastName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="username" placeholder="Username" id="username" [(ngModel)]="signUpModel.username">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="email" placeholder="Email" id="email" [(ngModel)]="signUpModel.email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="password" name="password" placeholder="Password" id="password" [(ngModel)]="signUpModel.password">
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
+</form>

@@ -16,8 +16,12 @@ export class SignInRouteComponent {
     public readonly router: Router
     ) {}
 
-  public login(loginModel: LoginFormModel) {
+  public signUp(loginModel: LoginFormModel): void {
     this.authService.authorize(loginModel)
       .subscribe(() => this.router.navigate(['/home']));
+  }
+
+  public redirectToSignUp(): void {
+    this.router.navigate(['/sign-up']);
   }
 }

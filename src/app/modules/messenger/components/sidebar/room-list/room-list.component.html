@@ -6,3 +6,5 @@
   [isActive]="isRoomActive(room)"
   [class.sidebar-room-active]="isRoomActive(room)">
 </ac-sidebar-room>
+
+<div *ngIf="!sortedRooms.length">No conversations yet</div>

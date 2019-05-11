@@ -9,10 +9,15 @@ import { LoginFormModel } from './login-form.model';
 })
 export class LoginFormComponent {
   @Output() public submitted = new EventEmitter<LoginFormModel>();
+  @Output() public toSignUp = new EventEmitter<void>();
 
   public readonly loginModel: LoginFormModel = new LoginFormModel();
 
-  public onSubmit() {
+  public onSubmit(): void {
     this.submitted.emit(this.loginModel);
+  }
+
+  public signUp(): void {
+    this.toSignUp.emit();
   }
 }

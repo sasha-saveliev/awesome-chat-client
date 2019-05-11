@@ -1,5 +1,11 @@
+$sidebar-header-height: 100px;
+$sidebar-footer-height: 48px;
+
 :host {
   display: block;
+
+  overflow: auto;
+  height: calc(100% - (#{$sidebar-header-height} + #{$sidebar-footer-height}));
 
   .contact-item-active {
     background-color: gray;
