@@ -3,7 +3,8 @@
 <div class="room-info-wrapper">
   <div class="room-info">
     <div class="room-name">{{name}}</div>
-    <div class="room-last-message">{{getLastMessage().text}}</div>
+    <div *ngIf="!isTypingLabelVisible" class="room-last-message">{{getLastMessage().text}}</div>
+    <div *ngIf="isTypingLabelVisible">Typing message...</div>
   </div>
   <div class="room-last-message-time">{{time}}</div>
 </div>

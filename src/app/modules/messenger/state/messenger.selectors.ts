@@ -3,9 +3,24 @@ import { MessengerState } from './messenger.reducer';
 
 export const getMessengerFeatureStateSelector = createFeatureSelector<MessengerState>('messenger');
 
+export const getCurrentUserSelector = createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.currentUser
+);
+
+export const getUserByIdSelector = id => createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.users.find(user => user.id === id)
+);
+
 export const getUsersSelector = createSelector(
   getMessengerFeatureStateSelector,
   state => state.users
+);
+
+export const getOnlineUsersSelector = createSelector(
+  getMessengerFeatureStateSelector,
+  state => state.usersOnline
 );
 
 export const getRoomsSelector = createSelector(
@@ -23,22 +38,12 @@ export const getRoomByIdSelector = id => createSelector(
   state => state.rooms.find(room => room.id === id)
 );
 
-export const getCurrentUserSelector = createSelector(
-  getMessengerFeatureStateSelector,
-  state => state.currentUser
-);
-
-export const getUserByIdSelector = id => createSelector(
-  getMessengerFeatureStateSelector,
-  state => state.users.find(user => user.id === id)
-);
-
 export const getActiveSidebarSectionSelector = createSelector(
   getMessengerFeatureStateSelector,
   state => state.activeSidebarSection
 );
 
-export const getOnlineUsersSelector = createSelector(
+export const getTypingMessagesSelector = createSelector(
   getMessengerFeatureStateSelector,
-  state => state.usersOnline
+  state => state.typingMessages
 );

@@ -13,8 +13,39 @@ export class RoomChatFooterComponent {
   public messageForm;
 
   @Output() public message = new EventEmitter<MessageFormModel>();
+  @Output() public typingMessage = new EventEmitter<void>();
+  @Output() public stopTypingMessage = new EventEmitter<void>();
+
+  public typingTimer;
+  public readonly doneTypingInterval = 1500;
+  public isTyping = false;
 
   public readonly messageModel: MessageFormModel = new MessageFormModel();
+
+  public doneTyping() {
+    this.stopTypingMessage.emit();
+    this.isTyping = false;
+  }
+
+  public handleKeyUp(): void {
+    if (!this.messageModel.text) {
+      clearTimeout(this.typingTimer);
+
+      return this.doneTyping();
+    }
+
+    clearTimeout(this.typingTimer);
+    this.typingTimer = setTimeout(this.doneTyping.bind(this), this.doneTypingInterval);
+
+    if (!this.isTyping) {
+      this.isTyping = true;
+      this.typingMessage.emit();
+    }
+  }
+
+  public handleKeyDown(): void {
+    clearTimeout(this.typingTimer);
+  }
 
   public submitMessage() {
     if (!this.messageModel.text) {

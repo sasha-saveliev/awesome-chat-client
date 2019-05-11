@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 
-import { Room, SidebarSection, User } from '../../models';
+import { Room, SidebarSection, TypingMessage, User } from '../../models';
 import { RoomService } from '../../services';
 import { AddRoomAction, SetActiveRoomAction, SetActiveSidebarSectionAction, State } from '../../state';
 
@@ -18,6 +18,7 @@ export class SidebarComponent {
 
   @Input() public users: User[];
   @Input() public usersOnline: number[];
+  @Input() public typingMessages: TypingMessage[];
   @Input() public currentUser: User;
 
   constructor(

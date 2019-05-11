@@ -12,5 +12,8 @@
       No messages here yet
     </div>
   </div>
-  <ac-room-chat-footer (message)="submitMessage($event)"></ac-room-chat-footer>
+  <ac-room-chat-footer
+    (message)="submitMessage($event)"
+    (typingMessage)="sendTypingEvent()"
+    (stopTypingMessage)="sendStopTypingEvent()"></ac-room-chat-footer>
 </div>

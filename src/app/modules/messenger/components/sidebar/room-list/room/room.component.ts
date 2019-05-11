@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import * as moment from 'moment';
 
-import { Message, Room, User } from '../../../../models';
+import { Message, Room, TypingMessage, User } from '../../../../models';
 
 @Component({
   selector: 'ac-sidebar-room',
@@ -9,8 +9,10 @@ import { Message, Room, User } from '../../../../models';
   styleUrls: ['./room.component.scss']
 })
 export class SidebarRoomComponent {
+  @Input() public isActive: boolean;
   @Input() public room: Room;
   @Input() public currentUser: User;
+  @Input() public typingMessages: TypingMessage[];
 
   // TODO: Check how to reduce count of checks also need to subscribe on message changes
   public getLastMessage(): Message {
@@ -28,5 +30,9 @@ export class SidebarRoomComponent {
     return this.room.participants
       .find(participant => participant.id !== this.currentUser.id)
       .username;
+  }
+
+  public get isTypingLabelVisible(): boolean {
+    return this.typingMessages.length > 0 && !this.isActive;
   }
 }

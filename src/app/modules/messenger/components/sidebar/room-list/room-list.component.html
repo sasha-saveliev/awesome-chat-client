@@ -2,5 +2,7 @@
   (click)="setActiveRoom(room)"
   [room]="room"
   [currentUser]="currentUser"
-  [class.sidebar-room-active]="activeRoom && (activeRoom.id === room.id)">
+  [typingMessages]="getRoomTypingMessages(room)"
+  [isActive]="isRoomActive(room)"
+  [class.sidebar-room-active]="isRoomActive(room)">
 </ac-sidebar-room>

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { Message } from '../../modules/messenger/models';
+import { Message, TypingMessage } from '../../modules/messenger/models';
 import { NotificationService } from '../../modules/messenger/services';
-import { AddRoomMessageAction, State } from '../../modules/messenger/state';
+import {
+  AddRoomMessageAction,
+  AddTypingMessageAction,
+  RemoveTypingMessageAction,
+  State
+} from '../../modules/messenger/state';
 import { MessagesEvents } from '../events';
 import { SocketService } from './socket.service';
-
-import { ElectronService } from '../../providers/electron.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +24,8 @@ export class MessageSocketService {
 
   public initSubscribers(): void {
     this.onNewMessage();
+    this.onTyping();
+    this.onStopTyping();
   }
 
   public onNewMessage(): void {
@@ -29,6 +34,22 @@ export class MessageSocketService {
       .on(MessagesEvents.NewMessage, (message: Message) => {
         this.store.dispatch(new AddRoomMessageAction(message));
         this.notificationService.notifyAboutNewMessage(message);
+      });
+  }
+
+  public onTyping(): void {
+    this.socketService
+      .getConnection()
+      .on(MessagesEvents.TypingMessage, (typingMessage: TypingMessage) => {
+        this.store.dispatch(new AddTypingMessageAction(typingMessage));
+      });
+  }
+
+  public onStopTyping(): void {
+    this.socketService
+      .getConnection()
+      .on(MessagesEvents.StopTypingMessage, (typingMessage: TypingMessage) => {
+        this.store.dispatch(new RemoveTypingMessageAction(typingMessage));
       });
   }
 }

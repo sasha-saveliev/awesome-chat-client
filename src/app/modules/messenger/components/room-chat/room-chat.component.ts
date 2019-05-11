@@ -21,6 +21,20 @@ export class RoomChatComponent {
     public readonly store: Store<State>
     ) {}
 
+  public sendTypingEvent() {
+    this.messageService.createTypingMessageEvent({
+      roomId: this.room.id,
+      userId: this.currentUser.id
+    }).subscribe(() => {});
+  }
+
+  public sendStopTypingEvent() {
+    this.messageService.createStopTypingMessageEvent({
+      roomId: this.room.id,
+      userId: this.currentUser.id
+    }).subscribe(() => {});
+  }
+
   public submitMessage(messageModel: MessageFormModel) {
     this.messageService
       .createMessage(this.currentUser, messageModel, this.room)

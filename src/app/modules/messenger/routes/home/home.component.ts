@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { untilComponentDestroyed } from '@w11k/ngx-componentdestroyed';
 
 import { MessageSocketService, SocketService, UserStatusSocketService } from '../../../../socket/services';
-import { Room, SidebarSection, User } from '../../models';
+import { Room, SidebarSection, TypingMessage, User } from '../../models';
 import { UsersService } from '../../services';
 import { RoomService } from '../../services/room.service';
 import {
@@ -15,6 +15,7 @@ import {
   getCurrentUserSelector,
   getOnlineUsersSelector,
   getRoomsSelector,
+  getTypingMessagesSelector,
   getUsersSelector,
   SetCurrentUserAction,
   State
@@ -24,12 +25,13 @@ import {
   selector: 'ac-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeRouteComponent implements OnInit, OnDestroy {
   public currentUser: User;
   public users: User[];
   public usersOnline: number[];
+  public typingMessages: TypingMessage[];
 
   public activeSidebarSection: SidebarSection;
 
@@ -96,6 +98,12 @@ export class HomeRouteComponent implements OnInit, OnDestroy {
     this.store.pipe(select(getOnlineUsersSelector), untilComponentDestroyed(this))
       .subscribe((usersOnline: number[]) => {
         this.usersOnline = usersOnline;
+        this.cd.detectChanges();
+      });
+
+    this.store.pipe(select(getTypingMessagesSelector), untilComponentDestroyed(this))
+      .subscribe((typingMessages: TypingMessage[]) => {
+        this.typingMessages = typingMessages;
         this.cd.detectChanges();
       });
   }

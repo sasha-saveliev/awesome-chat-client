@@ -1,4 +1,4 @@
-import { Room, SidebarSection, User } from '../models';
+import { Room, SidebarSection, TypingMessage, User } from '../models';
 import { MessengerActions, MessengerActionTypes } from './messenger.actions';
 
 export interface State {
@@ -15,6 +15,7 @@ export interface MessengerState {
   usersOnline: number[];
 
   rooms: Room[];
+  typingMessages: TypingMessage[];
 }
 
 const initialState: MessengerState = {
@@ -30,7 +31,8 @@ const initialState: MessengerState = {
   users: [],
   usersOnline: [],
 
-  rooms: []
+  rooms: [],
+  typingMessages: []
 };
 
 export function messengerReducer(state = initialState, action: MessengerActions): MessengerState {
@@ -115,7 +117,34 @@ export function messengerReducer(state = initialState, action: MessengerActions)
 
       return {
         ...state,
-        rooms: [...state.rooms]
+        rooms: [...state.rooms.map(room => ({ ...room }))]
+      };
+    }
+
+    case MessengerActionTypes.AddTypingMessage: {
+      const { payload } = action;
+      const isAlreadyTyping = state.typingMessages
+        .find(typingMessage => (typingMessage.userId === payload.userId) && (typingMessage.roomId === payload.roomId));
+
+      if (isAlreadyTyping) {
+        return state;
+      }
+
+      return {
+        ...state,
+        typingMessages: [...state.typingMessages, payload]
+      };
+    }
+
+    case MessengerActionTypes.RemoveTypingMessage: {
+      const { payload } = action;
+      const typingMessages = state.typingMessages
+        .filter(typingMessage => !((typingMessage.userId === payload.userId)
+          && (typingMessage.roomId === payload.roomId)));
+
+      return {
+        ...state,
+        typingMessages: [...typingMessages]
       };
     }
 

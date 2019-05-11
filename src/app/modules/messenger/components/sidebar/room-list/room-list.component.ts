@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Room, User } from '../../../models';
+import { Room, TypingMessage, User } from '../../../models';
 
 @Component({
   selector: 'ac-sidebar-room-list',
@@ -11,6 +11,7 @@ export class SidebarRoomListComponent {
   @Input() public readonly activeRoom: Room;
   @Input() public readonly rooms: Room[];
   @Input() public readonly currentUser: User;
+  @Input() public readonly typingMessages: TypingMessage[];
 
   @Output() public activeRoomChanged = new EventEmitter<Room>();
 
@@ -27,5 +28,15 @@ export class SidebarRoomListComponent {
 
         return secondRoomLastMessage.timestamp - firstRoomLastMessage.timestamp;
       });
+  }
+
+  public getRoomTypingMessages(room: Room): TypingMessage | TypingMessage[] {
+    return this.typingMessages.filter(typingMessage => typingMessage.roomId === room.id);
+  }
+
+  public isRoomActive(room: Room): boolean {
+    const { activeRoom } = this;
+
+    return activeRoom && (activeRoom.id === room.id);
   }
 }

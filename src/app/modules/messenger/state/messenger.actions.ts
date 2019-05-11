@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Message, Room, User } from '../models';
+import { Message, Room, TypingMessage, User } from '../models';
 import { SidebarSection } from '../models/sidebar-section.model';
 
 export enum MessengerActionTypes {
@@ -15,7 +15,10 @@ export enum MessengerActionTypes {
   AddRoom = '[Messenger] Add Room',
   AddRooms = '[Messenger] Add Rooms',
   SetActiveRoom = '[Messenger] Set Active Room',
+
   AddRoomMessage = '[Messenger] Add Room Message',
+  AddTypingMessage = '[Messenger] Add Typing Message',
+  RemoveTypingMessage = '[Messenger] Remove Typing Message',
 
   SetActiveSidebarSection = '[Messenger] Set Active Sidebar Section'
 }
@@ -80,6 +83,18 @@ export class AddRoomMessageAction implements Action {
   constructor(public payload: Message) {}
 }
 
+export class AddTypingMessageAction implements Action {
+  public readonly type = MessengerActionTypes.AddTypingMessage;
+
+  constructor(public payload: TypingMessage) {}
+}
+
+export class RemoveTypingMessageAction implements Action {
+  public readonly type = MessengerActionTypes.RemoveTypingMessage;
+
+  constructor(public payload: TypingMessage) {}
+}
+
 export class SetActiveSidebarSectionAction implements Action {
   public readonly type = MessengerActionTypes.SetActiveSidebarSection;
 
@@ -87,5 +102,6 @@ export class SetActiveSidebarSectionAction implements Action {
 }
 
 export type MessengerActions = AddUsersAction | AddUserAction | AddRoomAction
-  | AddRoomsAction | AddRoomMessageAction | SetActiveRoomAction | SetCurrentUserAction
-  | SetActiveSidebarSectionAction | AddOnlineUsersAction | AddOnlineUserAction | RemoveOnlineUserAction;
+  | AddRoomsAction | AddRoomMessageAction | AddTypingMessageAction | RemoveTypingMessageAction | SetActiveRoomAction
+  | SetCurrentUserAction | SetActiveSidebarSectionAction | AddOnlineUsersAction
+  | AddOnlineUserAction | RemoveOnlineUserAction;
