@@ -1,4 +1,4 @@
-<div class="message-avatar" [ngClass]="{ hidden: !showAuthor }"></div>
+<img src={{author.avatarUrl}} alt="" class="message-avatar" [ngClass]="{ hidden: !showAuthor }">
 
 <div>
   <div *ngIf="showAuthor" class="message-author">{{author.username}}</div>

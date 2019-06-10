@@ -1,3 +1,5 @@
+@import 'color-palette';
+
 :host {
   display: block;
   width: 350px;
@@ -9,5 +11,14 @@
   form {
     display: flex;
     flex-direction: column;
+
+    .no-account {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #2368A1;
+    }
   }
 }

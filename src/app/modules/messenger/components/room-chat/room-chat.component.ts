@@ -31,8 +31,7 @@ export class RoomChatComponent implements AfterViewChecked {
         .filter(message => message.authorId !== this.currentUser.id)
         .filter(message => {
           const isAlreadyViewed = message.views.find(view => view.seenBy !== this.currentUser.id);
-          console.log('message', message)
-          console.log(isAlreadyViewed, 'view')
+
           return !isAlreadyViewed;
         });
 
@@ -40,7 +39,6 @@ export class RoomChatComponent implements AfterViewChecked {
         return;
       }
 
-      console.log(messagesToBeMarked, 'message to be marked')
       messagesToBeMarked
       .forEach(message => {
         this.messageService.markMessageAsReaded({

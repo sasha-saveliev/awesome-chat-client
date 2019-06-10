@@ -1,7 +1,9 @@
+@import 'color-palette';
+
 .sidebar-room-active {
-  background-color: gray;
+  background-color: $chathams-blue;
 
   &:hover {
-    background-color: gray;
+    background-color: $chathams-blue;
   }
 }

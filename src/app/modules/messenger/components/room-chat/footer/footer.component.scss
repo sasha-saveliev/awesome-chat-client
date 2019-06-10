@@ -4,7 +4,7 @@
   width: 100%;
   display: block;
 
-  border-top: 1px solid $soft-grey;
+  border-top: 1px solid $matisse-soft;
   padding: 0 40px;
 
   position: absolute;
@@ -20,6 +20,7 @@
     cursor: pointer;
     border: none;
     outline: none;
+    background-color: transparent;
   }
 
   .message-input {

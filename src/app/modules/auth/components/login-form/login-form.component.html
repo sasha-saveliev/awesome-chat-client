@@ -1,11 +1,11 @@
-<h3 class="login-form-title">Login Form</h3>
+<h3 class="login-form-title">Авторизуйтесь</h3>
 <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
   <mat-form-field>
-    <input matInput name="email" placeholder="Email" id="email" [(ngModel)]="loginModel.email">
+    <input matInput type="text" name="email" placeholder="Електронна адреса" id="email" [(ngModel)]="loginModel.email">
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="password" placeholder="Password" id="password" [(ngModel)]="loginModel.password">
+    <input matInput type="password" name="password" placeholder="Пароль" id="password" [(ngModel)]="loginModel.password">
   </mat-form-field>
-  <span (click)="signUp()">Don't have an account?</span>
-  <button type="submit" mat-raised-button color="primary">Submit</button>
+  <span (click)="signUp()" class="no-account">Ще немає аккаунту?</span>
+  <button type="submit" mat-raised-button>Вхід</button>
 </form>

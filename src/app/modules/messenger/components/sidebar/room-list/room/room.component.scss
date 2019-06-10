@@ -7,11 +7,11 @@ $avatar-width: 50px;
   flex-direction: row;
 
   padding: 15px;
-  border-bottom: 1px solid $soft-grey;
+  // border-bottom: 1px solid $soft-grey;
   cursor: pointer;
 
   &:hover {
-    background-color: $white-lilac;
+    background-color: $danube;
   }
 }
 
@@ -21,8 +21,13 @@ $avatar-width: 50px;
 
   background-color: rosybrown;
   border-radius: 50%;
+  object-fit: cover;
 
   margin-right: 10px;
+
+  &.online {
+    border: 2px solid $online;
+  }
 }
 
 .room-info-wrapper {
@@ -37,7 +42,11 @@ $avatar-width: 50px;
     flex-direction: column;
 
     .room-name {
+      font-family: 'Open Sans';
       font-weight: bold;
+      font-size: 14px;
+      color: #CADBE8;
+
       margin-bottom: 5px;
     }
 

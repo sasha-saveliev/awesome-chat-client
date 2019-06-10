@@ -10,6 +10,7 @@ import { SignUpRouteComponent } from './routes/sign-up/sign-up.component';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
+import { MatCard } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.comp
     SignUpRouteComponent,
 
     LoginFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+
+    MatCard
   ],
   imports: [
     CommonModule,

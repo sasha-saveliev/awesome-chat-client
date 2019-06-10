@@ -1,6 +1,6 @@
 <form (ngSubmit)="submitMessage();" #messageForm="ngForm" class="message-form">
   <mat-form-field class="message-input">
-    <input matInput id="text" name="text" placeholder="Type your message" (keyup)="handleKeyUp()" (keydown)="handleKeyDown()" [(ngModel)]="messageModel.text">
+    <input matInput id="text" name="text" placeholder="Введіть ваше повідомлення" (keyup)="handleKeyUp()" (keydown)="handleKeyDown()" [(ngModel)]="messageModel.text">
   </mat-form-field>
 
   <button class="submit-button fas fa-paper-plane"></button>

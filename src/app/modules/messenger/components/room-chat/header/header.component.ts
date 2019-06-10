@@ -19,4 +19,10 @@ export class RoomChatHeaderComponent {
 
     return this.usersOnline.includes(user.id) ? 'online' : '';
   }
+
+  public getAvatar() {
+    return this.room.participants
+      .find(participant => participant.id !== this.currentUser.id)
+      .avatarUrl;
+  }
 }

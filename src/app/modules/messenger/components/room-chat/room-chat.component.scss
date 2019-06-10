@@ -1,9 +1,12 @@
 @import 'shared';
+@import 'color-palette';
 
 :host {
   display: block;
   width: calc(100% - #{$sidebar-width});
   position: relative;
+
+  background-color: $matisse;
 }
 
 .room-chat-container {

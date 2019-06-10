@@ -11,6 +11,7 @@ export class SidebarRoomListComponent {
   @Input() public readonly activeRoom: Room;
   @Input() public readonly rooms: Room[];
   @Input() public readonly currentUser: User;
+  @Input() public readonly usersOnline: number[];
   @Input() public readonly typingMessages: TypingMessage[];
 
   @Output() public activeRoomChanged = new EventEmitter<Room>();

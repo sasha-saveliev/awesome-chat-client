@@ -13,6 +13,7 @@ export class SidebarRoomComponent {
   @Input() public room: Room;
   @Input() public currentUser: User;
   @Input() public typingMessages: TypingMessage[];
+  @Input() public usersOnline: number[];
 
   // TODO: Check how to reduce count of checks also need to subscribe on message changes
   public getLastMessage(): Message {
@@ -36,12 +37,24 @@ export class SidebarRoomComponent {
     return this.typingMessages.length > 0 && !this.isActive;
   }
 
+  public get avatar() {
+    return this.room.participants
+      .find(participant => participant.id !== this.currentUser.id)
+      .avatarUrl;
+  }
+
+  public isOnline() {
+    const user = this.room.participants.find(participant => participant.id !== this.currentUser.id);
+    console.log(this.usersOnline)
+    return this.usersOnline.includes(user.id);
+  }
+
   public get unreadedCount(): number {
     return this.room.messages
     .filter(message => message.authorId !== this.currentUser.id)
     .reduce((acc, message) => {
       const isAlreadyViewed = message.views.find(view => view.seenBy === this.currentUser.id);
-      console.log(isAlreadyViewed, 'is already')
+
       if (isAlreadyViewed) {
         return acc;
       }

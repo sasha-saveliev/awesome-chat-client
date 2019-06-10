@@ -157,12 +157,11 @@ export function messengerReducer(state = initialState, action: MessengerActions)
           ...state
         };
       }
-      console.log(room, 'room')
+
       const message = room.messages.find(({ id }) => id === payload.messageId);
       const isViewAlreadyExist = message.views.find(({ id }) => id === payload.id);
 
       if (!isViewAlreadyExist) {
-        console.log(message, 'message')
         message.views.push(payload);
       }
 

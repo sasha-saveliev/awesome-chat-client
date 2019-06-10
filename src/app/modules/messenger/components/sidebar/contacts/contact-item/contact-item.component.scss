@@ -5,7 +5,7 @@
   cursor: pointer;
   padding: 8px 15px;
 
-  border-bottom: 1px solid $soft-grey;
+  border-bottom: 1px solid $matisse-soft;
 
   .contact-item-avatar {
     width: 35px;
@@ -13,6 +13,7 @@
 
     background-color: rosybrown;
     border-radius: 50%;
+    object-fit: cover;
 
     margin-right: 10px;
   }

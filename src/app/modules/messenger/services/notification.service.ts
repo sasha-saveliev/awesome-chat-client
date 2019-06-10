@@ -34,7 +34,10 @@ export class NotificationService {
         return;
       }
 
-      const notification = new Notification(sender.username, { body: message.text });
+      const notification = new Notification(sender.username, {
+        body: message.text,
+        icon: sender.avatarUrl
+      });
       notification.onclick = () => {
         if (activeRoom && activeRoom.id === room.id) {
           return;
