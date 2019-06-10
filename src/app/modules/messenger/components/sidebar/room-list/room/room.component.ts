@@ -22,7 +22,7 @@ export class SidebarRoomComponent {
   }
 
   public get time() {
-    return moment(Number(this.getLastMessage().timestamp)).format('H:mm');
+    return moment(Number(this.getLastMessage().createdAt)).format('H:mm');
   }
 
   // TODO: Subscribe on room and current user
@@ -34,5 +34,19 @@ export class SidebarRoomComponent {
 
   public get isTypingLabelVisible(): boolean {
     return this.typingMessages.length > 0 && !this.isActive;
+  }
+
+  public get unreadedCount(): number {
+    return this.room.messages
+    .filter(message => message.authorId !== this.currentUser.id)
+    .reduce((acc, message) => {
+      const isAlreadyViewed = message.views.find(view => view.seenBy === this.currentUser.id);
+      console.log(isAlreadyViewed, 'is already')
+      if (isAlreadyViewed) {
+        return acc;
+      }
+
+      return acc + 1;
+    }, 0);
   }
 }

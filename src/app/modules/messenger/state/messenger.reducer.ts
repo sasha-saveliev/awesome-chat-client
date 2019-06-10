@@ -148,6 +148,29 @@ export function messengerReducer(state = initialState, action: MessengerActions)
       };
     }
 
+    case MessengerActionTypes.AddMessageView: {
+      const { payload } = action;
+      const room = state.rooms.find(({ id }) => id === payload.roomId);
+
+      if (!room) {
+        return {
+          ...state
+        };
+      }
+      console.log(room, 'room')
+      const message = room.messages.find(({ id }) => id === payload.messageId);
+      const isViewAlreadyExist = message.views.find(({ id }) => id === payload.id);
+
+      if (!isViewAlreadyExist) {
+        console.log(message, 'message')
+        message.views.push(payload);
+      }
+
+      return {
+        ...state
+      };
+    }
+
     case MessengerActionTypes.SetActiveSidebarSection: {
       return {
         ...state,

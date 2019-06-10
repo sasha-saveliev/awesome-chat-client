@@ -14,4 +14,7 @@
   (roomChanged)="createOrOpenRoom($event)">
 </ac-sidebar-contacts>
 
+<ac-sidebar-settings *ngIf="isSectionActive('settings')">
+</ac-sidebar-settings>
+
 <ac-sidebar-footer (activeSectionChanged)="setActiveSection($event)"></ac-sidebar-footer>

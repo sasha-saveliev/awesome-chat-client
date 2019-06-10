@@ -12,9 +12,10 @@ import { Message, User } from '../../../models';
 export class MessageComponent {
   @Input() public readonly message: Message;
   @Input() public readonly author: User;
+  @Input() public isViewed: boolean = false;
   @Input() public showAuthor: boolean = true;
 
   public get time() {
-    return moment(Number(this.message.timestamp)).format('H:mm');
+    return moment(Number(this.message.createdAt)).format('H:mm');
   }
 }

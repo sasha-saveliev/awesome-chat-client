@@ -26,7 +26,7 @@ export class SidebarRoomListComponent {
         const firstRoomLastMessage = firstRoom.messages[firstRoom.messages.length - 1];
         const secondRoomLastMessage = secondRoom.messages[secondRoom.messages.length - 1];
 
-        return secondRoomLastMessage.timestamp - firstRoomLastMessage.timestamp;
+        return secondRoomLastMessage.createdAt - firstRoomLastMessage.createdAt;
       });
   }
 

@@ -6,6 +6,7 @@ import { MessagesEvents } from '../../../socket/events';
 import { SocketService } from '../../../socket/services/socket.service';
 import { MessageFormModel } from '../components/room-chat/footer/message-form.model';
 import { CreateMessage, Message, Room, TypingMessage, User } from '../models';
+import { CreateMessageView } from '../models/create-message-view.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,10 +47,20 @@ export class MessageService {
     });
   }
 
+  public markMessageAsReaded(messageView: CreateMessageView) {
+    return new Observable(observer => {
+      this.socketService.getConnection()
+        .emit(MessagesEvents.ViewMessage,
+          messageView,
+          () => observer.next(messageView)
+        );
+    });
+  }
+
   private prepareMessagePayload(currentUser: User, messageModel: MessageFormModel, room: Room): CreateMessage {
     return {
       authorId: currentUser.id,
-      timestamp: + new Date(),
+      createdAt: + new Date(),
       ...messageModel,
       roomId: room.id
     };

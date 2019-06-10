@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { Message, TypingMessage } from '../../modules/messenger/models';
+import { Message, MessageView, TypingMessage } from '../../modules/messenger/models';
 import { NotificationService } from '../../modules/messenger/services';
 import {
+  AddMessageView,
   AddRoomMessageAction,
   AddTypingMessageAction,
   RemoveTypingMessageAction,
@@ -26,6 +27,7 @@ export class MessageSocketService {
     this.onNewMessage();
     this.onTyping();
     this.onStopTyping();
+    this.onMessageView();
   }
 
   public onNewMessage(): void {
@@ -50,6 +52,14 @@ export class MessageSocketService {
       .getConnection()
       .on(MessagesEvents.StopTypingMessage, (typingMessage: TypingMessage) => {
         this.store.dispatch(new RemoveTypingMessageAction(typingMessage));
+      });
+  }
+
+  public onMessageView(): void {
+    this.socketService
+      .getConnection()
+      .on(MessagesEvents.NewMessageView, (messageView: MessageView) => {
+        this.store.dispatch(new AddMessageView(messageView));
       });
   }
 }

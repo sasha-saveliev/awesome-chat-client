@@ -6,5 +6,6 @@
     <div *ngIf="!isTypingLabelVisible" class="room-last-message">{{getLastMessage().text}}</div>
     <div *ngIf="isTypingLabelVisible">Typing message...</div>
   </div>
+  <div>{{unreadedCount}}</div>
   <div class="room-last-message-time">{{time}}</div>
 </div>

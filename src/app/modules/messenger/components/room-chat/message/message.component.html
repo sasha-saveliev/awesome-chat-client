@@ -3,5 +3,7 @@
 <div>
   <div *ngIf="showAuthor" class="message-author">{{author.username}}</div>
   <div class="message-text">{{message.text}}</div>
+
+  <div *ngIf="isViewed">viewed</div>
   <div class="message-time">{{time}}</div>
 </div>
