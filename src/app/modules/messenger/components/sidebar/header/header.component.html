@@ -1,1 +1,10 @@
-<h3>Header</h3>
+<img *ngIf="currentUser" src={{currentUser.avatarUrl}} alt="" class="avatar" [ngClass]="{ online: isOnline }">
+
+<button *ngIf="currentUser" mat-button [matMenuTriggerFor]="menu" class="user-menu">
+  {{currentUser.username}}
+  <div class="online-dot"></div>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Профайл</button>
+  <button mat-menu-item>Вихід</button>
+</mat-menu>

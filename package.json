@@ -75,5 +75,8 @@
     "webdriver-manager": "12.1.0",
     "zone.js": "0.8.26",
     "moment": "^2.24.0"
+  },
+  "dependencies": {
+    "@ctrl/ngx-emoji-mart": "^0.17.0"
   }
 }

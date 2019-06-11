@@ -1,7 +1,17 @@
 <form (ngSubmit)="submitMessage();" #messageForm="ngForm" class="message-form">
+  <button (click)="toggleEmojiPicker()" class="message-form-icon emoji-icon far fa-grin"></button>
+  <emoji-mart
+    title="Виберіть емодзі"
+    *ngIf="isEmojiPickerVisible"
+    [perLine]="8"
+    [showPreview]="false"
+    [style]="{ position: 'absolute', bottom: '60px', left: '20px' }">
+  </emoji-mart>
+  <button class="message-form-icon attachments-icon fas fa-paperclip"></button>
+
   <mat-form-field class="message-input">
     <input matInput id="text" name="text" placeholder="Введіть ваше повідомлення" (keyup)="handleKeyUp()" (keydown)="handleKeyDown()" [(ngModel)]="messageModel.text">
   </mat-form-field>
 
-  <button class="submit-button fas fa-paper-plane"></button>
+  <button class="message-form-icon submit-button fas fa-paper-plane"></button>
 </form>

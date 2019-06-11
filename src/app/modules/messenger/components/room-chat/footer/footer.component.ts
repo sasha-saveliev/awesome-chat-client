@@ -19,6 +19,7 @@ export class RoomChatFooterComponent {
   public typingTimer;
   public readonly doneTypingInterval = 1500;
   public isTyping = false;
+  public isEmojiPickerVisible = false;
 
   public readonly messageModel: MessageFormModel = new MessageFormModel();
 
@@ -45,6 +46,10 @@ export class RoomChatFooterComponent {
 
   public handleKeyDown(): void {
     clearTimeout(this.typingTimer);
+  }
+
+  public toggleEmojiPicker(): void {
+    this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
   public submitMessage() {

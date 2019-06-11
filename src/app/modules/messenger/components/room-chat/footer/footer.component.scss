@@ -5,7 +5,7 @@
   display: block;
 
   border-top: 1px solid $matisse-soft;
-  padding: 0 40px;
+  padding: 0 20px;
 
   position: absolute;
   bottom: 0;
@@ -14,13 +14,28 @@
     display: flex;
   }
 
-  .submit-button {
+  .message-form-icon {
     font-size: 20px;
+    color: $cadet-blue;
 
     cursor: pointer;
     border: none;
     outline: none;
     background-color: transparent;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $porcelain;
+    }
+  }
+
+  .attachments-icon {
+    font-size: 22px;
+    margin-right: 20px;
+  }
+
+  .emoji-icon {
+    font-size: 24px;
   }
 
   .message-input {

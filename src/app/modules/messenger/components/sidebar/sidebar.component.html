@@ -1,4 +1,4 @@
-<ac-sidebar-header></ac-sidebar-header>
+<ac-sidebar-header [currentUser]="currentUser"></ac-sidebar-header>
 
 <ac-sidebar-room-list *ngIf="isSectionActive('rooms')"
   [activeRoom]="activeRoom"
@@ -15,7 +15,7 @@
   (roomChanged)="createOrOpenRoom($event)">
 </ac-sidebar-contacts>
 
-<ac-sidebar-settings *ngIf="isSectionActive('settings')">
+<ac-sidebar-settings *ngIf="isSectionActive('channels')">
 </ac-sidebar-settings>
 
 <ac-sidebar-footer (activeSectionChanged)="setActiveSection($event)"></ac-sidebar-footer>

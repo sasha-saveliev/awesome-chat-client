@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import * as moment from 'moment';
 
 import { Message, Room, TypingMessage, User } from '../../../../models';
@@ -6,7 +6,8 @@ import { Message, Room, TypingMessage, User } from '../../../../models';
 @Component({
   selector: 'ac-sidebar-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.scss']
+  styleUrls: ['./room.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarRoomComponent {
   @Input() public isActive: boolean;
@@ -43,9 +44,9 @@ export class SidebarRoomComponent {
       .avatarUrl;
   }
 
-  public isOnline() {
+  public get isOnline() {
     const user = this.room.participants.find(participant => participant.id !== this.currentUser.id);
-    console.log(this.usersOnline)
+
     return this.usersOnline.includes(user.id);
   }
 

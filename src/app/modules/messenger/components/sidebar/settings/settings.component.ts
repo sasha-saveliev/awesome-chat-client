@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+
 @Component({
   selector: 'ac-sidebar-settings',
   templateUrl: './settings.component.html',
@@ -7,5 +8,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarSettingsComponent {
-
+  public fakeChannels = [
+    {
+      name: 'Загальний'
+    },
+    {
+      name: 'Бухгалтерія'
+    },
+    {
+      name: 'КН-42з'
+    }
+  ];
 }

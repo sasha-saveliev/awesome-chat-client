@@ -10,15 +10,17 @@ import { SidebarSection } from '../../../models';
 export class SidebarFooterComponent {
   @Output() public activeSectionChanged = new EventEmitter<SidebarSection>();
 
-  public readonly sections: SidebarSection[] = [{
+  public readonly sections: SidebarSection[] = [
+  {
+    name: 'channels',
+    icon: 'fas fa-bullhorn'
+  },
+  {
     name: 'rooms',
     icon: 'fas fa-comments'
   }, {
     name: 'contacts',
     icon: 'far fa-address-book'
-  }, {
-    name: 'settings',
-    icon: 'fas fa-cog'
   }];
 
   public setActiveSection(section: SidebarSection): void {
